@@ -1,0 +1,38 @@
+{
+    "linux": {
+        "branch": "rust",
+        "description": "Adding support for the Rust language to the Linux kernel.",
+        "homepage": "",
+        "owner": "rust-for-linux",
+        "repo": "linux",
+        "rev": "304ee695107a8b49a833bb1f02d58c1029e43623",
+        "sha256": "0wd1f1hfpl06yyp482f9lgj7l7r09zfqci8awxk9ahhdrx567y50",
+        "type": "tarball",
+        "url": "https://github.com/rust-for-linux/linux/archive/304ee695107a8b49a833bb1f02d58c1029e43623.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "af958e8057f345ee1aca714c1247ef3ba1c15f5e",
+        "sha256": "1qjavxabbrsh73yck5dcq8jggvh3r2jkbr6b5nlz5d9yrqm9255n",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/af958e8057f345ee1aca714c1247ef3ba1c15f5e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "master",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f35d716fe1e35a7f12cc2108ed3ef5b15ce622d0",
+        "sha256": "1jmrm71amccwklx0h1bij65hzzc41jfxi59g5bf2w6vyz2cmfgsb",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/f35d716fe1e35a7f12cc2108ed3ef5b15ce622d0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
