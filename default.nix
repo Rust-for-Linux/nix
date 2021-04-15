@@ -1,13 +1,16 @@
-{ system ? builtins.currentSystem }:
+{ sources ? import nix/sources.nix
+, nixpkgs ? sources.nixpkgs
+, linux ? sources.linux
+, system ? builtins.currentSystem
+}:
 
 let
-  sources = import nix/sources.nix;
-  pkgs = import sources.nixpkgs { inherit system; };
+  pkgs = import nixpkgs { inherit system; };
 
   rust-for-linux = {
     kernel = pkgs.callPackage ./kernel.nix {
       version = "5.11";
-      src = sources.linux;
+      src = linux;
     };
   };
 

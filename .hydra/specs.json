@@ -1,0 +1,25 @@
+{
+  "enabled": 1,
+  "hidden": false,
+  "description": "Efforts for packaging the Rust for Linux project with the Nix package manager.",
+  "nixexprinput": "nixexpr",
+  "nixexprpath": ".hydra/declarative-jobsets.nix",
+  "checkinterval": 60,
+  "schedulingshares": 100,
+  "enableemail": false,
+  "emailoverride": "",
+  "keepnr": 3,
+  "type": 0,
+  "inputs": {
+    "expr": {
+      "value": "https://github.com/rust-for-linux/nix main",
+      "type": "git",
+      "emailresponsible": false
+    },
+    "nixpkgs": {
+      "value": "https://github.com/NixOS/nixpkgs master",
+      "type": "git",
+      "emailresponsible": false
+    }
+  }
+}
