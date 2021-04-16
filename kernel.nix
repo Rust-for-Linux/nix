@@ -63,7 +63,17 @@ in
 
     structuredExtraConfig = with lib.kernel; {
       RUST = yes;
-      RUST_EXAMPLE = yes;
+      SAMPLES = yes;
+      SAMPLES_RUST = yes;
+      SAMPLE_RUST_MINIMAL = module;
+      SAMPLE_RUST_PRINT = module;
+      SAMPLE_RUST_MODULE_PARAMETERS = module;
+      SAMPLE_RUST_SYNC = module;
+      SAMPLE_RUST_CHRDEV = module;
+      SAMPLE_RUST_MISCDEV = module;
+      SAMPLE_RUST_STACK_PROBING = module;
+      SAMPLE_RUST_SEMAPHORE = module;
+      SAMPLE_RUST_SEMAPHORE_C = module;
     };
   }).configfile.overrideAttrs addRust;
 
