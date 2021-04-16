@@ -2,7 +2,7 @@
   "enabled": 1,
   "hidden": false,
   "description": "Efforts for packaging the Rust for Linux project with the Nix package manager.",
-  "nixexprinput": "nixexpr",
+  "nixexprinput": "expr",
   "nixexprpath": ".hydra/declarative-jobsets.nix",
   "checkinterval": 60,
   "schedulingshares": 100,
