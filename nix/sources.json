@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "rust-for-linux",
         "repo": "linux",
-        "rev": "e34bcb99a263e5ef30b2910d1305890517e88e0a",
-        "sha256": "1v37dpd9d7b76xzvzgg50gl8zsqk8g2mh09n5x5pkxvgf6lnmngc",
+        "rev": "30d13c67d6e3945c0b36abe858e8eed165b657ac",
+        "sha256": "06q5mwjm62rflfpwvnfgf0aq6p6m770aphb71z8cjl351js3g0sa",
         "type": "tarball",
-        "url": "https://github.com/rust-for-linux/linux/archive/e34bcb99a263e5ef30b2910d1305890517e88e0a.tar.gz",
+        "url": "https://github.com/rust-for-linux/linux/archive/30d13c67d6e3945c0b36abe858e8eed165b657ac.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -29,10 +29,10 @@
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "982bdad58472ab5275569da12a2953d2bc86f344",
-        "sha256": "1nhdxsnr8k6f4prv5hxhmdj2h78c5difc8rpysnp22za3wqhpyd7",
+        "rev": "08546595671398eb7939eb5865d111351c546cf1",
+        "sha256": "1cv9p3sy9f264da1q2bqsjc5hxq1hli94zd6wa7hgqr7lsj12xi2",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/982bdad58472ab5275569da12a2953d2bc86f344.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/08546595671398eb7939eb5865d111351c546cf1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

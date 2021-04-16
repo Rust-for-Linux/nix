@@ -79,4 +79,5 @@ in
   }).configfile.overrideAttrs addRust;
 
   config = { CONFIG_MODULES = "y"; CONFIG_FW_LOADER = "m"; };
+
 }).overrideAttrs addRust
