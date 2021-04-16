@@ -9,6 +9,7 @@
 
 , src
 , version
+, modVersion ? null
 }@args:
 
 let
@@ -49,7 +50,7 @@ in
   ];
 
   # modDirVersion needs to be x.y.z, will automatically add .0 if needed
-  modDirVersion = with lib; concatStringsSep "." (take 3 (splitVersion "${version}.0"));
+  modDirVersion = if modVersion != null then modVersion else with lib; concatStringsSep "." (take 3 (splitVersion "${version}.0"));
 
   # branchVersion needs to be x.y
   extraMeta = {
