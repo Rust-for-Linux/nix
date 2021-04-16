@@ -4,6 +4,36 @@ let
   pkgs = import nixpkgs {};
 
   desc = {
+    vm_test = {
+      description = "rust-for-linux nixos-vm tests";
+      checkinterval = "60";
+      enabled = "1";
+      nixexprinput = "expr";
+      nixexprpath = "default.nix";
+      schedulingshares = 100;
+      enableemail = false;
+      emailoverride = "";
+      keepnr = 3;
+      hidden = false;
+      type = 0;
+      inputs = {
+        linux = {
+          value = "https://github.com/rust-for-linux/linux rust";
+          type = "git";
+          emailresponsible = false;
+        };
+        nixpkgs = {
+          value = "https://github.com/NixOS/nixpkgs master";
+          type = "git";
+          emailresponsible = false;
+        };
+        expr = {
+          value = "https://github.com/rust-for-linux/nix vm_test";
+          type = "git";
+          emailresponsible = false;
+        };
+      };
+    };
     rust = {
       description = "Build linux rust tree";
       checkinterval = "60";
