@@ -26,6 +26,7 @@ let
   });
 
   addRust = old: {
+    RUST_LIB_SRC = rustPlatform.rustLibSrc;
     buildInputs = (old.buildInputs or []) ++ [
       rustcNightly
     ];
@@ -33,10 +34,6 @@ let
       (rust-bindgen.override { inherit clang llvmPackages; })
       rustfmt
     ];
-    postPatch = ''
-      substituteInPlace rust/Makefile --replace 'rustc_src = $(rustc_sysroot)/lib/rustlib/src/rust' "rust_lib_src = ${rustPlatform.rustLibSrc}"
-      substituteInPlace rust/Makefile --replace '$(rustc_src)/library' '$(rust_lib_src)'
-    '';
   };
 
 in
