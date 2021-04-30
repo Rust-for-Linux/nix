@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "rust-for-linux",
         "repo": "linux",
-        "rev": "e34bcb99a263e5ef30b2910d1305890517e88e0a",
-        "sha256": "1v37dpd9d7b76xzvzgg50gl8zsqk8g2mh09n5x5pkxvgf6lnmngc",
+        "rev": "912beef787b400b0518722c15879136c65b18608",
+        "sha256": "158ps50vmhqh3ysnks1kd5s8q0hkfvvgs3sjriwhy05ns8r8himz",
         "type": "tarball",
-        "url": "https://github.com/rust-for-linux/linux/archive/e34bcb99a263e5ef30b2910d1305890517e88e0a.tar.gz",
+        "url": "https://github.com/rust-for-linux/linux/archive/912beef787b400b0518722c15879136c65b18608.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
