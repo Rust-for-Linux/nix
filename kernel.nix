@@ -137,7 +137,7 @@ kernel = (linuxManualConfig rec {
       mkdir "$out"
       cp -r build/rust/doc/* "$out/"
       mkdir -p $out/nix-support
-      echo "doc manual $out" >> $out/nix-support/hydra-build-products
+      echo "doc manual $out/kernel" >> $out/nix-support/hydra-build-products
     '';
 
     meta = {
