@@ -1,5 +1,6 @@
 { lib
-, llvmPackages_11
+, stdenv
+, llvmPackages_latest
 , rustPlatform
 , rustfmt
 , rust-bindgen
@@ -13,25 +14,27 @@
 }@args:
 
 let
-  llvmPackages = llvmPackages_11;
-  inherit (llvmPackages) clang stdenv;
+  llvmPackages = llvmPackages_latest;
+  inherit (llvmPackages_latest) clang;
 
-  rustcNightly = rustPlatform.rust.rustc.overrideAttrs (oldAttrs: {
+  rustc = rustPlatform.rust.rustc;
+  /*rustcNightly = rustPlatform.rust.rustc.overrideAttrs (oldAttrs: {
     configureFlags = map (flag:
       if flag == "--release-channel=stable" then
         "--release-channel=nightly"
       else
         flag
     ) oldAttrs.configureFlags;
-  });
+  });*/
 
   addRust = old: {
     RUST_LIB_SRC = rustPlatform.rustLibSrc;
     buildInputs = (old.buildInputs or []) ++ [
-      rustcNightly
+        rustc
     ];
     nativeBuildInputs = (old.nativeBuildInputs or []) ++ [
-      (rust-bindgen.override { inherit clang llvmPackages; })
+      #(rust-bindgen.override { inherit clang llvmPackages; })
+      rust-bindgen
       rustfmt
     ];
   };
