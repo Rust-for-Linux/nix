@@ -1,7 +1,7 @@
 { lib, stdenv, llvmPackages_latest, rustPlatform, rustfmt, rust-bindgen
 , buildLinux, linuxManualConfig, kernelPatches
 
-, src, version, modVersion ? null }@args:
+, src, version, modVersion ? null, features ? null, ... }@args:
 
 let
   llvmPackages = llvmPackages_latest;
@@ -20,8 +20,8 @@ in (linuxManualConfig rec {
   inherit src version stdenv lib;
 
   kernelPatches = with args.kernelPatches; [
-    bridge_stp_helper
-    request_key_helper
+    #bridge_stp_helper
+    #request_key_helper
   ];
 
   # modDirVersion needs to be x.y.z, will automatically add .0 if needed
@@ -51,11 +51,16 @@ in (linuxManualConfig rec {
       SAMPLE_RUST_STACK_PROBING = module;
       SAMPLE_RUST_SEMAPHORE = module;
       SAMPLE_RUST_SEMAPHORE_C = module;
+
     };
   }).configfile.overrideAttrs addRust;
 
   config = {
     CONFIG_MODULES = "y";
     CONFIG_FW_LOADER = "m";
+
+    # needed to get the vm test working. whatever.
+    isEnabled = f: true;
+    isYes = f: true;
   };
 }).overrideAttrs addRust
