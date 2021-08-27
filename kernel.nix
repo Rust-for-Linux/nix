@@ -20,14 +20,6 @@ let
   inherit (llvmPackages_latest) clang;
 
   inherit (rustPlatform.rust) rustc;
-  /*rustcNightly = rustPlatform.rust.rustc.overrideAttrs (oldAttrs: {
-    configureFlags = map (flag:
-      if flag == "--release-channel=stable" then
-        "--release-channel=nightly"
-      else
-        flag
-    ) oldAttrs.configureFlags;
-  });*/
 
   addRust = old: {
     RUST_LIB_SRC = rustPlatform.rustLibSrc;
@@ -35,7 +27,6 @@ let
         rustc
     ];
     nativeBuildInputs = (old.nativeBuildInputs or []) ++ [
-      #(rust-bindgen.override { inherit clang llvmPackages; })
       rust-bindgen
       rustfmt
     ];
@@ -164,6 +155,7 @@ kernel = (linuxManualConfig rec {
       license = lib.licenses.gpl2Only;
       homepage = "https://github.com/rust-for-linux/linux";
       repositories.git = "https://github.com/rust-for-linux/linux";
+      maintainers = [ lib.maintainers.kloenk ];
       platforms = lib.platforms.linux;
       timeout = 14400; # 4 hours
     };
