@@ -28,9 +28,7 @@ let
     inherit kernel;
     # TODO: expose configfile somewhere
 
-    tests = {
-      minimal = import tests/minimal.nix { inherit nixpkgs kernel pkgs; };
-    };
+    tests = import ./tests { inherit nixpkgs kernel pkgs; };
   };
 
 in
