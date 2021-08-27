@@ -137,7 +137,25 @@ kernel = (linuxManualConfig rec {
       mkdir "$out"
       cp -r build/rust/doc/* "$out/"
       mkdir -p $out/nix-support
-      echo "doc manual $out/kernel" >> $out/nix-support/hydra-build-products
+      echo "doc manual $out/" >> $out/nix-support/hydra-build-products
+
+      cat <<EOF > $out/index.html
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+      <meta charset="utf-8">
+      <title>Rust for Linux documentation (Hydra)</title>
+      <meta name="description" content="Rust-For-Linux documentation">
+      <meta name="author" content="Rust for Linux Contributors">
+      <meta http-equiv="refresh" content="0; url=./kernel/">
+      <script>location="./kernel/"</script>
+      </head>
+      <body>
+      <h1>Redirecting...</h1>
+      <a href="./kernel/">Click here if you are not redirected.</a>
+      </body>
+      </html>
+      EOF
     '';
 
     meta = {
