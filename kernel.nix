@@ -87,8 +87,6 @@ kernel = (linuxManualConfig rec {
   configfile = kernel.configfile;
 
   doc = stdenv.mkDerivation {
-    outputs = [ "out" "doc" ];
-
     pname = "linux-doc";
     inherit version;
 
@@ -136,9 +134,10 @@ kernel = (linuxManualConfig rec {
     '';
 
     installPhase = ''
-      mkdir "$doc"
-      cp -r build/rust/doc/* "$doc/"
-      touch $out
+      mkdir "$out"
+      cp -r build/rust/doc/* "$out/"
+      mkdir -p $out/nix-support
+      echo "doc manual $out" >> $out/nix-support/hydra-build-products
     '';
 
     meta = {
