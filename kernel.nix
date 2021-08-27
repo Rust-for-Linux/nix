@@ -145,8 +145,8 @@ kernel = (linuxManualConfig rec {
       description =
         "The Linux kernel rust documentation";
       license = lib.licenses.gpl2Only;
-      homepage = "https://www.kernel.org/";
-      repositories.git = "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git";
+      homepage = "https://github.com/rust-for-linux/linux";
+      repositories.git = "https://github.com/rust-for-linux/linux";
       platforms = lib.platforms.linux;
       timeout = 14400; # 4 hours
     };
