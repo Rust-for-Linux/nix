@@ -7,12 +7,15 @@
 let
   pkgs = import nixpkgs { inherit system; };
 
-  rust-for-linux = {
+  rust-for-linux = let
     kernel = pkgs.callPackage ./kernel.nix {
       version = "5.14";
       modVersion = "5.14.0-rc3";
       src = linux;
-    };
+      };
+  in {
+    inherit (kernel) kernel doc;
+    inherit (kernel.kernel) configfile;
   };
 
 in

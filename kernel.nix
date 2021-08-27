@@ -7,6 +7,8 @@
 , buildLinux
 , linuxManualConfig
 , kernelPatches
+, perl, bc, nettools, openssl, rsync, gmp, libmpc, mpfr, gawk, zstd
+, python3Minimal, libelf, bison, flex, cpio, elfutils, buildPackages
 
 , src
 , version
@@ -17,7 +19,7 @@ let
   llvmPackages = llvmPackages_latest;
   inherit (llvmPackages_latest) clang;
 
-  rustc = rustPlatform.rust.rustc;
+  inherit (rustPlatform.rust) rustc;
   /*rustcNightly = rustPlatform.rust.rustc.overrideAttrs (oldAttrs: {
     configureFlags = map (flag:
       if flag == "--release-channel=stable" then
@@ -41,7 +43,8 @@ let
 
 in
 
-(linuxManualConfig rec {
+let
+kernel = (linuxManualConfig rec {
   inherit src version stdenv lib;
 
   kernelPatches = with args.kernelPatches; [
@@ -79,4 +82,80 @@ in
   }).configfile.overrideAttrs addRust;
 
   config = { CONFIG_MODULES = "y"; CONFIG_FW_LOADER = "m"; };
-}).overrideAttrs addRust
+}).overrideAttrs addRust;
+
+  configfile = kernel.configfile;
+
+  doc = stdenv.mkDerivation {
+    outputs = [ "out" "doc" ];
+
+    pname = "linux-doc";
+    inherit version;
+
+    depsBuildBuild = [ buildPackages.stdenv.cc ];
+    nativeBuildInputs = [ perl bc nettools openssl rsync gmp libmpc mpfr gawk zstd python3Minimal libelf bison flex cpio elfutils rustc rust-bindgen rustfmt ];
+    hardeningDisable = [ "bindnow" "format" "fortify" "stackprotector" "pic" "pie" ];
+
+    RUST_LIB_SRC = rustPlatform.rustLibSrc;
+
+    src = kernel.src;
+
+    #enableParallelBuilding = true;
+
+    configurePhase = ''
+      runHook preConfigure
+
+
+      mkdir build
+      export buildRoot="$(pwd)/build"
+
+      echo "manual-config configurePhase buildRoot=$buildRoot pwd=$PWD"
+
+      if [ -f "$buildRoot/.config" ]; then
+        echo "Could not link $buildRoot/.config : file exists"
+        exit 1
+      fi
+      ln -sv ${configfile} $buildRoot/.config
+
+      runHook postConfigure
+
+      # Note: we can get rid of this once http://permalink.gmane.org/gmane.linux.kbuild.devel/13800 is merged.
+      buildFlagsArray+=("KBUILD_BUILD_TIMESTAMP=$(date -u -d @$SOURCE_DATE_EPOCH)")
+
+      #cd $buildRoot
+    '';
+
+    buildFlags = [
+      "KBUILD_BUILD_VERSION=1-NixOS"
+      "rustdoc"
+      "O=build"
+    ];
+
+    preInstall = ''
+      installFlagsArray+=("-j$NIX_BUILD_CORES")
+    '';
+
+    installPhase = ''
+      mkdir "$doc"
+      cp -r build/rust/doc/* "$doc/"
+      touch $out
+    '';
+
+    meta = {
+      description =
+        "The Linux kernel rust documentation" +
+        (if kernelPatches == [] then "" else
+          " (with patches: "
+          + lib.concatStringsSep ", " (map (x: x.name) kernelPatches)
+          + ")");
+      license = lib.licenses.gpl2Only;
+      homepage = "https://www.kernel.org/";
+      repositories.git = "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git";
+      platforms = lib.platforms.linux;
+      timeout = 14400; # 4 hours
+    };
+  };
+
+in {
+  inherit kernel doc;
+}
