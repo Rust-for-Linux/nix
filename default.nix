@@ -8,8 +8,8 @@ let
   pkgs = import nixpkgs { inherit system; };
 
   rust-for-linux = let
-    version = "5.14";
-    modVersion = "5.14.0-rc3";
+    version = "5.16";
+    modVersion = "5.16.0-rc2";
     src = linux;
 
     kernel = pkgs.callPackage ./packages/kernel.nix {
