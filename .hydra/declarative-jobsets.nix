@@ -23,7 +23,7 @@ let
           emailresponsible = false;
         };
         nixpkgs = {
-          value = "https://github.com/NixOS/nixpkgs master";
+          value = "https://github.com/NixOS/nixpkgs staging";
           type = "git";
           emailresponsible = false;
         };
