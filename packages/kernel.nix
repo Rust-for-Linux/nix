@@ -10,6 +10,8 @@ let
   inherit (rustPlatform.rust) rustc;
 
   addRust = old: {
+    ignoreConfigErrors = true;
+
     RUST_LIB_SRC = rustPlatform.rustLibSrc;
     buildInputs = (old.buildInputs or [ ]) ++ [ rustc ];
     nativeBuildInputs = (old.nativeBuildInputs or [ ])
