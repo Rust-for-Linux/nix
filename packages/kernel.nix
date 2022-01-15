@@ -56,8 +56,8 @@ in (linuxManualConfig rec {
   }).configfile.overrideAttrs addRust;
 
   config = {
-    CONFIG_MODULES = "y";
-    CONFIG_FW_LOADER = "m";
+    #CONFIG_MODULES = "y";
+    #CONFIG_FW_LOADER = "m";
 
     # needed to get the vm test working. whatever.
     isEnabled = f: true;
