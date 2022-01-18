@@ -9,7 +9,7 @@ let
 
   rust-for-linux = let
     version = "5.16";
-    modVersion = "5.16.1";
+    modVersion = "5.16.0";
     src = linux;
 
     kernel = pkgs.callPackage ./packages/kernel.nix {
