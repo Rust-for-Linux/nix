@@ -23,7 +23,7 @@ let
           emailresponsible = false;
         };
         nixpkgs = {
-          value = "https://github.com/NixOS/nixpkgs staging";
+          value = "https://github.com/Rust-for-Linux/nixpkgs rust";
           type = "git";
           emailresponsible = false;
         };
@@ -53,7 +53,7 @@ let
           emailresponsible = false;
         };
         nixpkgs = {
-          value = "https://github.com/NixOS/nixpkgs staging";
+          value = "https://github.com/Rust-for-Linux/nixpkgs rust";
           type = "git";
           emailresponsible = false;
         };
